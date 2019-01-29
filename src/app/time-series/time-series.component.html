@@ -1,0 +1,13 @@
+<h2>{{title}}</h2>
+<h4>Predicted value <span style="color:orange">{{ predictForward }}</span> days in the future: <span style="color:blue">{{ prediction }}</span></h4>
+<p>The training data:
+  <select>
+    <option *ngFor="let item of prices; let i = index" [value]="i -- item">
+      {{item}}
+    </option>
+  </select>
+</p>
+<div>
+  <!--<app-dashboard [model]=model [data]=prices></app-dashboard>-->
+</div>
+

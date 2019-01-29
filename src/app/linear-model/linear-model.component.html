@@ -1,0 +1,7 @@
+<h2>{{title}}</h2>
+<h4>Enter the X value:
+  <input name="xValue" type="number" step="0.01" min="0" (change)="predict($event.target.value)">
+</h4>
+<h4>Predicted Y value: <span style="color:orange">{{ prediction }}</span></h4>
+<p>The X training data: {{xData}}</p>
+<p>The Y training data: {{yData}}</p>
