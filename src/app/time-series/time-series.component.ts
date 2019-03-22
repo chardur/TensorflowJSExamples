@@ -32,7 +32,9 @@ export class TimeSeriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.trainNewModel();
+    this.trainNewModel().then(() => {
+      console.log(this.prediction);
+    });
   }
 
   async trainNewModel() {
@@ -41,7 +43,7 @@ export class TimeSeriesComponent implements OnInit {
     const sampleSize = 1;
     let samplesX = [];
     let samplesY = [];
-    let start = this.prices.length - 42; // must be multiple of sample size
+    let start = 0; // must be multiple of sample size
     this.predictForward = 28; // must be multiple of sampleSize
     let j = start + this.predictForward;
     for (let i = start; i < this.prices.length - this.predictForward; i += sampleSize) {
@@ -88,13 +90,12 @@ export class TimeSeriesComponent implements OnInit {
     // compile and fit
     this.model.compile({loss: 'meanSquaredError', optimizer: optimizerVar});
     //let shape = [samplesX.length, sampleSize, 1];
-    await this.model.fit(tensorSamplesX, tensorSamplesY, {epochs: 50, batchSize: 5});
+    await this.model.fit(tensorSamplesX, tensorSamplesY, {epochs: 30, batchSize: 10});
     console.log("Model trained!");
 
     // predict
     const output = this.model.predict(tensorSamplesX) as any;
     this.prediction = Array.from(output.dataSync())[0];
-    console.log(this.prediction);
 
     //stop memory leaks
     this.model.dispose();
