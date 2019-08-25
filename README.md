@@ -2,6 +2,8 @@
 
 Some tensorflow.js examples in angular, just for fun. Note the models are not tuned/optimized, this is more of a proof of concept. One linear regression model, and one LSTM time series model. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
 
+For a live demo go to www.charlesdurfee.com/tfjs
+
   <img src="/Linear.png" />
   <img src="/TimeSeries.png" /> 
 
